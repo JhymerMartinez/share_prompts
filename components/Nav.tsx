@@ -19,6 +19,7 @@ const Nav = () => {
     LiteralUnion<BuiltInProviderType, string>,
     ClientSafeProvider
   > | null>(null);
+  const [toggleDropdown, setToggleDropdown] = useState(false);
 
   useEffect(() => {
     const loadProviders = async () => {
@@ -76,6 +77,65 @@ const Nav = () => {
                   type="button"
                   onClick={() => signIn(provider.id)}
                   className="black_btn"
+                >
+                  Sign in with {provider.name}
+                </button>
+              ))}
+          </>
+        )}
+      </div>
+
+      {/* Mobile Navigation */}
+      <div className="sm:hidden flex relative">
+        {isUserLoggedIn ? (
+          <div className="flex">
+            <Image
+              src="./assets/images/logo.svg"
+              alt="User Profile"
+              width={37}
+              height={37}
+              className="rounded-full"
+              onClick={() => setToggleDropdown((prevState) => !prevState)}
+            ></Image>
+
+            {toggleDropdown && (
+              <div className="dropdown">
+                <Link
+                  href={"/profile"}
+                  className="dropdown_link"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  My Profile
+                </Link>
+                <Link
+                  href={"/create-prompt"}
+                  className="dropdown_link"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  Create Prompt
+                </Link>
+                <button
+                  type="button"
+                  className="black_btn w-full mt-5"
+                  onClick={() => {
+                    setToggleDropdown(false);
+                    signOut();
+                  }}
+                >
+                  Sign Out
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <>
+            {providers &&
+              Object.values(providers).map((provider) => (
+                <button
+                  key={provider.name}
+                  type="button"
+                  className="black_btn"
+                  onClick={() => signIn(provider.id)}
                 >
                   Sign in with {provider.name}
                 </button>
