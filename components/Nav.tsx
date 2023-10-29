@@ -14,12 +14,12 @@ import {
 import { BuiltInProviderType } from "next-auth/providers/index";
 
 const Nav = () => {
-  const isUserLoggedIn = true;
   const [providers, setProviders] = useState<Record<
     LiteralUnion<BuiltInProviderType, string>,
     ClientSafeProvider
   > | null>(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const loadProviders = async () => {
@@ -44,7 +44,7 @@ const Nav = () => {
 
       {/* Desktop Navigation */}
       <div className="sm:flex hidden">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href={"/create-prompt"} className="black_btn">
               Create Post
@@ -60,7 +60,7 @@ const Nav = () => {
 
             <Link href={"/profile"}>
               <Image
-                src="./assets/images/logo.svg"
+                src={session?.user?.image || "./assets/images/logo.svg"}
                 alt="User Profile"
                 width={37}
                 height={37}
@@ -87,10 +87,10 @@ const Nav = () => {
 
       {/* Mobile Navigation */}
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex">
             <Image
-              src="./assets/images/logo.svg"
+              src={session?.user?.image || "./assets/images/logo.svg"}
               alt="User Profile"
               width={37}
               height={37}
