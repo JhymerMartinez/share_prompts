@@ -1,3 +1,5 @@
+"use client";
+
 import Form from "@components/Form";
 import { FormTypes, Post } from "@interfaces";
 import { useState } from "react";

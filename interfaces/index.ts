@@ -12,7 +12,7 @@ export interface Post {
 }
 
 export enum FormTypes {
-  CREATE = "create",
+  CREATE = "Create",
 }
 
 export interface FormProps {
