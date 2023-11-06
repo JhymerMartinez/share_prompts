@@ -13,18 +13,24 @@ const handler = NextAuth({
   ],
   callbacks: {
     async session({ session, token }) {
-      let currentSession = session as UserSession;
-      const sessionUser = await User.findOne({
-        email: currentSession?.user?.email,
-      });
-      currentSession = {
-        ...currentSession,
-        user: {
-          ...currentSession.user,
-          id: sessionUser?._id.toString(),
-        },
-      };
-      return currentSession;
+      try {
+        await connectToDB();
+        let newSession = session as UserSession;
+        const sessionUser = await User.findOne({
+          email: newSession?.user?.email,
+        });
+        newSession = {
+          ...newSession,
+          user: {
+            ...newSession.user,
+            id: sessionUser?._id.toString(),
+          },
+        };
+        return newSession;
+      } catch (error) {
+        console.log(error);
+        return session;
+      }
     },
     async signIn({ profile }) {
       try {
