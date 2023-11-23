@@ -7,8 +7,14 @@ export interface ProviderProps {
 }
 
 export interface Post {
+  _id?: string;
   prompt: string;
   tag: string;
+  creator: {
+    image: string;
+    username: string;
+    email: string;
+  };
 }
 
 export enum FormTypes {
@@ -30,4 +36,14 @@ export interface UserSession extends Session {
     email?: string | null;
     image?: string | null;
   };
+}
+
+export interface PromptCardProps {
+  post: Post;
+  handleTagClick: (tag: string) => void;
+}
+
+export interface PromptCardListProps {
+  data: Post[];
+  handleTagClick: (tag: string) => void;
 }
