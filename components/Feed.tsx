@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import PromptCard from "./PromptCard";
-import { PromptCardListProps } from "@interfaces";
+import { Post, PromptCardListProps } from "@interfaces";
 
 const PromptCardList = (props: PromptCardListProps) => {
   const { data, handleTagClick } = props;
@@ -23,7 +23,7 @@ const PromptCardList = (props: PromptCardListProps) => {
 
 const Feed = () => {
   const [searchText, setSearchText] = useState("");
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);

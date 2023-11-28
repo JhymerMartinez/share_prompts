@@ -14,6 +14,11 @@ const CreatePrompt = () => {
   const [post, setPost] = useState<Post>({
     prompt: "",
     tag: "",
+    creator: {
+      username: "",
+      image: "",
+      email: "",
+    },
   });
 
   const createPrompt = async (e: React.FormEvent<HTMLFormElement>) => {
