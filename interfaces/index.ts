@@ -11,6 +11,7 @@ export interface Post {
   prompt: string;
   tag: string;
   creator: {
+    _id: string;
     image: string;
     username: string;
     email: string;
@@ -40,10 +41,20 @@ export interface UserSession extends Session {
 
 export interface PromptCardProps {
   post: Post;
-  handleTagClick: (tag: string) => void;
+  handleTagClick?: (tag: string) => void;
+  handleEdit?: () => void;
+  handleDelete?: () => void;
 }
 
 export interface PromptCardListProps {
   data: Post[];
   handleTagClick: (tag: string) => void;
+}
+
+export interface ProfileProps {
+  name: string;
+  desc: string;
+  data: Post[];
+  handleEdit: () => void;
+  handleDelete: () => void;
 }
