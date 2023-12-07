@@ -5,8 +5,10 @@ import { useState, useEffect } from "react";
 
 import Profile from "@components/Profile";
 import { Post, UserSession } from "@interfaces";
+import { useRouter } from "next/navigation";
 
 const MyProfile = () => {
+  const router = useRouter();
   const { data } = useSession();
   const session = data as UserSession;
   const [posts, setPosts] = useState<Post[]>([]);
@@ -22,11 +24,11 @@ const MyProfile = () => {
     if (session?.user?.id) fetchPrompts();
   }, [session]);
 
-  const handleEdit = () => {
-    console.log("edit");
+  const handleEdit = (post: Post) => {
+    router.push(`/update-prompt?id=${post._id}`);
   };
 
-  const handleDelete = () => {
+  const handleDelete = (post: Post) => {
     console.log("delete");
   };
 

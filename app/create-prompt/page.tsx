@@ -15,6 +15,7 @@ const CreatePrompt = () => {
     prompt: "",
     tag: "",
     creator: {
+      _id: "",
       username: "",
       image: "",
       email: "",

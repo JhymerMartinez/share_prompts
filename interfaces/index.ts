@@ -20,6 +20,7 @@ export interface Post {
 
 export enum FormTypes {
   CREATE = "Create",
+  EDIT = "Edit",
 }
 
 export interface FormProps {
@@ -55,6 +56,6 @@ export interface ProfileProps {
   name: string;
   desc: string;
   data: Post[];
-  handleEdit: () => void;
-  handleDelete: () => void;
+  handleEdit: (post: Post) => void;
+  handleDelete: (post: Post) => void;
 }

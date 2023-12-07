@@ -16,8 +16,8 @@ const Profile = (props: ProfileProps) => {
             <PromptCard
               key={post._id}
               post={post}
-              handleEdit={() => handleEdit?.()}
-              handleDelete={() => handleDelete?.()}
+              handleEdit={() => handleEdit?.(post)}
+              handleDelete={() => handleDelete?.(post)}
             />
           );
         })}
