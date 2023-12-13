@@ -60,7 +60,7 @@ export const DELETE = async (
       });
     }
 
-    await existingPrompt.delete();
+    await existingPrompt.deleteOne();
 
     return new Response(JSON.stringify({ message: "Prompt deleted" }), {
       status: 200,
